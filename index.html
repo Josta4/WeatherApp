@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Il tempo che trovi</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+</head>
+<body>
+    <div class="greypadding"><h1>Il tempo che trovi</h1></div>
+    <div class="mapContainer fadeInDown">
+        <iframe width="100%" height="100%" class="interactiveMap" id="map" src="" frameborder="0"></iframe>
+    </div>
+    <div class="card fadeInDown">
+        <div class="searchBox">
+            <input type="text" placeholder="Enter City name">
+            <button><img src="images/search.png" alt="search"></button>
+        </div>
+        <div class="error">
+            <p><b>Invalid City name</b></p>
+        </div>
+        <div class="weather">
+            <img src="" class="weather-icon">
+            <h1 class="temp"></h1>
+            <h3 class="meteo"></h3>
+            <h3 class="time"></h3>
+            <h2 class="city"></h2>
+            <div class="details">
+                <div class="col">
+                    <img src="images/humidity.png">
+                    <div>
+                        <p class="humidity"></p>
+                        <p>Humidity</p>
+                    </div>
+                </div>
+                <div class="col">
+                    <img src="images/wind.png">
+                    <div>
+                        <p class="wind"></p>
+                        <p>Wind Speed</p>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <img src="" class="prev-img">
+            </div>
+            <div>
+                <img src="" class="next-img"></div>
+            </div>
+        </div>
+        <div class="underButton">
+            <div class="showMap">
+                <button class="switchMap">Show interactive map</button>
+                <button class="backMap">Show weather card</button>
+            </div>
+            <div class="previsioni">
+                <button class="prev"><img src=""></button>
+                <button class="next"><img src=""></button>
+            </div>
+        </div>
+        <script>
+            
+            const searchInput = document.querySelector(".searchBox input");
+            const searchBtn = document.querySelector(".searchBox button");
+            const weatherIcon = document.querySelector(".weather-icon");
+            const nextBtn = document.querySelector(".previsioni .next");
+            const prevBtn = document.querySelector(".previsioni .prev");
+            const showInteractiveMap = document.querySelector(".showMap .switchMap"); 
+            const showCardWeather = document.querySelector(".showMap .backMap");           
+            
+            
+            searchBtn.addEventListener("click", ()=> {
+                
+                i = 0;
+                checkWeather(searchInput.value);
+                
+            });
+            
+            searchInput.addEventListener("keyup", function(event) {
+                
+                if (event.key == "Enter") {
+                    
+                    i = 0;
+                    checkWeather(searchInput.value);
+                    
+                }});
+                
+                nextBtn.addEventListener("click", ()=> {
+                    
+                    i < 24? (i = i+8, checkWeather(searchInput.value)): console.log("Reached the limit of 3 days after :(");
+                    console.log(i);
+                    
+                });
+                
+                prevBtn.addEventListener("click", ()=> {
+                    
+                    i >= 8? (i= i-8, checkWeather(searchInput.value)): console.log("Can't go backwards :(");
+                    console.log(i);
+                    
+                });
+                
+                showInteractiveMap.addEventListener("click", ()=> {
+
+                    document.querySelector(".card").style.display = "none";
+                    document.querySelector(".previsioni").style.display = "none";
+                    document.querySelector(".switchMap").style.display = "none";
+                    document.querySelector(".backMap").style.display = "block";
+                    document.querySelector(".mapContainer").style.display = "block";
+                    
+                });
+                
+                showCardWeather.addEventListener("click", ()=> {
+
+                    document.querySelector(".card").style.display = "block";
+                    document.querySelector(".previsioni").style.display = "block";
+                    document.querySelector(".switchMap").style.display = "block";
+                    document.querySelector(".backMap").style.display = "none";
+                    document.querySelector(".mapContainer").style.display = "none";
+                    
+                    
+                });
+                
+            </script>
+        </body>
+        </html>

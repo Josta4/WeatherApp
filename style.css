@@ -83,13 +83,15 @@ h1 {
 
 .showMap button {
     background-color: #f0f0f0;
-    border-radius: 20px;
+    border-radius: 5px;
     width: 180px;
     height: 60px;
     cursor: pointer;
     border: 0;
     outline: 0;
-    position: sticky;
+    left: 0;
+    right: 0;
+    margin: auto;
     
 }
 
